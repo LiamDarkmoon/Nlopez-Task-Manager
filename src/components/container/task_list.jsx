@@ -24,9 +24,20 @@ const TaskListComponent = () => {
         };
     }, [tasks])
 
+    function completeTask(task) {
+        console.log('Complete this task:', task)
+        const index = tasks.indexOf(task);
+        const tempTask = [...tasks];
+        tempTask[index].completed = !tempTask[index].completed;
+        setTasks(tempTask);
+    }
 
-    const changeCompleted = (id) => {
-        console.log("ToDo: cambiar estado de la tarea")
+    function deleteTask(task) {
+        console.log('Delete this task:', task)
+        const index = tasks.indexOf(task);
+        const tempTask = [...tasks];
+        tempTask.splice(index, 1);
+        setTasks(tempTask);
     }
 
     return (
@@ -54,7 +65,13 @@ const TaskListComponent = () => {
                             {/* iterar sobre una lista de tareas */}
                             { tasks.map((task, index) => {
                                 return (
-                                    <TaskComponent key={index} task={task}></TaskComponent>
+                                        <TaskComponent
+                                            key={index} 
+                                            task={task}
+                                            complete={completeTask}
+                                            remove={deleteTask}
+                                        >
+                                        </TaskComponent>
                                 )
                             })}
                         </tbody>

@@ -1,4 +1,8 @@
 .task-name {
   font-weight: black;
   color: purple;
+}
+
+.task-action {
+  cursor: pointer;
 }/*# sourceMappingURL=task.css.map */
